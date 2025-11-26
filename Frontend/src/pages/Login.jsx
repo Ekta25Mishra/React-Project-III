@@ -1,5 +1,15 @@
-
+import { nanoid } from "nanoid";
+import {useForm} from "react-hook-form"
 const Login = () => {
+
+  const {register, reset, handleSubmit}= useForm();
+
+  const LoginHandler=(user)=>{
+    user.id=nanoid();
+    console.log(user);
+    
+  }
+
    return (
     <div className="bg-amber-100 flex justify-center items-center h-screen">
       <div className="bg-red-300 shadow-md rounded-2xl p-10 w-full max-w-sm">
@@ -7,8 +17,11 @@ const Login = () => {
           LOGIN
         </h1>
 
-        <form className="space-y-5">
+        <form 
+        onSubmit={handleSubmit(LoginHandler)}
+        className="space-y-5">
           <input
+          {...register("username")}
             type="text"
             placeholder="Name"
             className="w-full px-4 py-3 rounded-xl bg-[#f4f1ed] text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-300"
