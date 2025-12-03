@@ -1,11 +1,11 @@
 import { nanoid } from "nanoid";
 import {useForm} from "react-hook-form"
+import {Link} from "react-router-dom"
 const Login = () => {
 
   const {register, reset, handleSubmit}= useForm();
 
   const LoginHandler=(user)=>{
-    user.id=nanoid();
     console.log(user);
     
   }
@@ -20,20 +20,17 @@ const Login = () => {
         <form 
         onSubmit={handleSubmit(LoginHandler)}
         className="space-y-5">
-          <input
-          {...register("username")}
-            type="text"
-            placeholder="Name"
-            className="w-full px-4 py-3 rounded-xl bg-[#f4f1ed] text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-300"
-          />
+          
 
           <input
+          {...register("email")}
             type="email"
             placeholder="Email"
             className="w-full px-4 py-3 rounded-xl bg-[#f4f1ed] text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-300"
           />
 
           <input
+          {...register("password")}
             type="password"
             placeholder="Password"
             className="w-full px-4 py-3 rounded-xl bg-[#f4f1ed] text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-300"
@@ -45,6 +42,11 @@ const Login = () => {
           >
             Log In
           </button>
+
+          <p className="mt-5">
+            Don't have an account? 
+            <Link className="text-blue-600" to="/register">Register</Link>
+          </p>
         </form>
 
         <p className="text-center text-gray-600 mt-6 cursor-pointer hover:underline">
