@@ -17,12 +17,28 @@
   ],
   "products": [
     {
-      "id": "1",
-      "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-      "price": 109.95,
-      "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-      "category": "men's clothing",
-      "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_t.png"
+      "id": "CdrAxQrPDhn3ut0o1BvzZ",
+      "image": "https://cdn.dummyjson.com/recipe-images/1.webp",
+      "title": "Pizza",
+      "price": "750",
+      "description": "Margherita Pizza",
+      "category": "food"
+    },
+    {
+      "id": "W0v-moYRrFrel9MkZzg2N",
+      "image": "https://imgs.search.brave.com/q5e2EcXsiQsFQomUQe2l2sbmO_anzunNm7ypjV8ZMEk/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvODkx/MzIyMDYwL3Bob3Rv/L3B1bXBraW4tc291/cC5qcGc_cz02MTJ4/NjEyJnc9MCZrPTIw/JmM9Vi0wMnZ0UElh/eklFR21aYUVZS1ZK/ZzBhMmw1cmxpOXRX/TzNxZmNRR0F1dz0",
+      "title": "esrfd",
+      "price": "7564",
+      "description": "sdzfxgch",
+      "category": "cxv"
+    },
+    {
+      "id": "DrEP6VFxlitR7bq6b-E_f",
+      "image": "https://imgs.search.brave.com/CgatJ_nykl758vt7SfBmaT0viIAkmDX8LhTPxq2ufAI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTU5/OTAwMjE0MS9waG90/by93b21hbi1zZXJ2/aW5nLXR3by1ib3ds/cy1vZi1wdW1wa2lu/LXNvdXAtZm9yLXRo/YW5rc2dpdmluZy1t/ZWFsLmpwZz9zPTYx/Mng2MTImdz0wJms9/MjAmYz1ndXpIbGxN/RVFWN1JYUUp5SndV/TG5yMDlpYS04Mm9C/WEFBbzFNVUhzWlFR/PQ",
+      "title": "wdsd",
+      "price": "45",
+      "description": "sefdcesfdvxvc",
+      "category": "ijklm"
     }
   ],
   "carts": []

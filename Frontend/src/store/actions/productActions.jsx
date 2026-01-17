@@ -1,13 +1,40 @@
 import axios from '../../api/axiosconfig'
+import {loadproduct} from "../reducers/productSlice";
 
-export const asyncloadproducts=()=> async(dispatch, getState)
-
-export const asynccreateproduct= ()=> async(dispatch, getState)=>{
+export const asyncloadproducts=()=> async(dispatch, getState)=>{
   try{
-    const user=JSON.parse(localStorage.getItem("user"));
-    if(user) dispatch(loaduser(user));
-    else console.log("User not logged in!");
-    
+    const {data}= await axios.get("/products");
+    dispatch(loadproduct(data));
+ }
+  catch(error){
+    console.log(error);
+  }
+}
+
+export const asynccreateproduct= (product)=> async(dispatch, getState)=>{
+  try{
+    await axios.post("/products" , product);
+    dispatch(asyncloadproducts());
+  }
+  catch(error){
+    console.log(error);
+  }
+};
+
+export const asyncupdateproduct= (id , product)=> async(dispatch, getState)=>{
+  try{
+    await axios.patch("/products/" + id , product);
+    dispatch(asyncloadproducts());
+  }
+  catch(error){
+    console.log(error);
+  }
+};
+
+export const asyncdeleteproduct= (id)=> async(dispatch, getState)=>{
+  try{
+    await axios.delete("/products/" + id);
+    dispatch(asyncloadproducts());
   }
   catch(error){
     console.log(error);
