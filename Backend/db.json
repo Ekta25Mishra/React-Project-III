@@ -1,29 +1,21 @@
 {
   "users": [
     {
-      "id": "tL4RnByQmp6zbxZHCu3p4",
-      "username": "Ekta Mishra",
-      "email": "gfdr@gmail.com",
-      "password": "gdxtrt",
+      "id": "irEkPYmSbG7hBJ4DYByfo",
+      "username": "Sammy Shukla",
+      "email": "shuklasam2109@gmail.com",
+      "password": "Shukla",
       "isAdmin": true
     },
     {
-      "id": "v4IjTrpOUuhVI8nROZQ80",
-      "username": "Sanu",
+      "id": "ipJWaZRC3amXGVQoLAE41",
+      "username": "Sanu Mishra",
       "email": "sanu@gmail.com",
       "password": "sanu",
       "isAdmin": false
     }
   ],
   "products": [
-    {
-      "id": "CdrAxQrPDhn3ut0o1BvzZ",
-      "image": "https://cdn.dummyjson.com/recipe-images/1.webp",
-      "title": "Pizza",
-      "price": "750",
-      "description": "Margherita Pizza",
-      "category": "food"
-    },
     {
       "id": "W0v-moYRrFrel9MkZzg2N",
       "image": "https://imgs.search.brave.com/q5e2EcXsiQsFQomUQe2l2sbmO_anzunNm7ypjV8ZMEk/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvODkx/MzIyMDYwL3Bob3Rv/L3B1bXBraW4tc291/cC5qcGc_cz02MTJ4/NjEyJnc9MCZrPTIw/JmM9Vi0wMnZ0UElh/eklFR21aYUVZS1ZK/ZzBhMmw1cmxpOXRX/TzNxZmNRR0F1dz0",

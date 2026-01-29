@@ -8,13 +8,15 @@ import {
 
 const ProductDetails = () => {
   const { id } = useParams();
-  const {
-    productReducer: { products },
-    userReducer: { users },
-  } = useSelector((state) => state);
+  const products = useSelector(
+  (state) => state.productReducer?.products
+);
+
+const users = useSelector(
+  (state) => state.userReducer?.users
+);
   const product = products?.find((product) => product.id == id);
-  console.log(products, users);
-  
+  console.log( users);
 
   const { register, reset, handleSubmit } = useForm({
     defaultValues: {
@@ -27,6 +29,7 @@ const ProductDetails = () => {
   });
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const UpdateProductHandler = (product) => {
     dispatch(asyncupdateproduct(id, product));
   };
@@ -35,6 +38,9 @@ const ProductDetails = () => {
     dispatch(asyncdeleteproduct(id));
     navigate("/products");
   };
+
+  const loggedInUser = JSON.parse(localStorage.getItem("user"));
+
 
   return product ? (
     <div className="min-h-screen  bg-gray-100 px-4 py-10">
@@ -64,80 +70,80 @@ const ProductDetails = () => {
             </button>
           </div>
         </div>
-{/* Update Form */}
-        {users?.data?.[0]?.isAdmin && (
-        
-        <div className="bg-white rounded-2xl shadow-md p-8">
-          <h2 className="text-lg font-semibold text-gray-800 mb-6">
-            Update Product
-          </h2>
+        {/* Update Form */}
+        {/* {users?.user?.isAdmin && ( */}
+        {loggedInUser?.isAdmin && (
+          <div className="bg-white rounded-2xl shadow-md p-8">
+            <h2 className="text-lg font-semibold text-gray-800 mb-6">
+              Update Product
+            </h2>
 
-          <form
-            onSubmit={handleSubmit(UpdateProductHandler)}
-            className="space-y-5"
-          >
-            <input
-              {...register("image")}
-              type="url"
-              placeholder="Image URL"
-              className="w-full px-4 py-3 rounded-xl bg-gray-50 text-gray-700 
+            <form
+              onSubmit={handleSubmit(UpdateProductHandler)}
+              className="space-y-5"
+            >
+              <input
+                {...register("image")}
+                type="url"
+                placeholder="Image URL"
+                className="w-full px-4 py-3 rounded-xl bg-gray-50 text-gray-700 
                          border border-gray-200 focus:outline-none 
                          focus:ring-2 focus:ring-gray-300"
-            />
+              />
 
-            <input
-              {...register("title")}
-              type="text"
-              placeholder="Title"
-              className="w-full px-4 py-3 rounded-xl bg-gray-50 text-gray-700 
+              <input
+                {...register("title")}
+                type="text"
+                placeholder="Title"
+                className="w-full px-4 py-3 rounded-xl bg-gray-50 text-gray-700 
                          border border-gray-200 focus:outline-none 
                          focus:ring-2 focus:ring-gray-300"
-            />
+              />
 
-            <input
-              {...register("price")}
-              type="number"
-              placeholder="0.00"
-              className="w-full px-4 py-3 rounded-xl bg-gray-50 text-gray-700 
+              <input
+                {...register("price")}
+                type="number"
+                placeholder="0.00"
+                className="w-full px-4 py-3 rounded-xl bg-gray-50 text-gray-700 
                          border border-gray-200 focus:outline-none 
                          focus:ring-2 focus:ring-gray-300"
-            />
+              />
 
-            <textarea
-              {...register("description")}
-              placeholder="Enter description here..."
-              className="w-full px-4 py-3 rounded-xl bg-gray-50 text-gray-700 
+              <textarea
+                {...register("description")}
+                placeholder="Enter description here..."
+                className="w-full px-4 py-3 rounded-xl bg-gray-50 text-gray-700 
                          border border-gray-200 focus:outline-none 
                          focus:ring-2 focus:ring-gray-300 resize-none"
-              rows={3}
-            ></textarea>
+                rows={3}
+              ></textarea>
 
-            <input
-              {...register("category")}
-              type="text"
-              placeholder="Category"
-              className="w-full px-4 py-3 rounded-xl bg-gray-50 text-gray-700 
+              <input
+                {...register("category")}
+                type="text"
+                placeholder="Category"
+                className="w-full px-4 py-3 rounded-xl bg-gray-50 text-gray-700 
                          border border-gray-200 focus:outline-none 
                          focus:ring-2 focus:ring-gray-300"
-            />
+              />
 
-            <button
-              type="submit"
-              className="w-full py-3 rounded-xl bg-gray-900 text-white 
+              <button
+                type="submit"
+                className="w-full py-3 rounded-xl bg-gray-900 text-white 
                          font-medium hover:bg-gray-800 transition-colors mb-5"
-            >
-              Update Product
-            </button>
-            <button
-              onClick={DeleteHandler}
-              type="button"
-              className="w-full py-3 rounded-xl bg-red-900 text-white 
+              >
+                Update Product
+              </button>
+              <button
+                onClick={DeleteHandler}
+                type="button"
+                className="w-full py-3 rounded-xl bg-red-900 text-white 
                          font-medium hover:bg-red-800 transition-colors"
-            >
-              Delete Product
-            </button>
-          </form>
-        </div>
+              >
+                Delete Product
+              </button>
+            </form>
+          </div>
         )}
       </div>
     </div>
