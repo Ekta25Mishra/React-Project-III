@@ -87,7 +87,6 @@ const Cart = () => {
         <h1 className="text-xl font-semibold text-gray-800 mb-6">
          Your cart, {users.username}
         </h1>
-
         <ul>{cartItems}</ul>
       </div>
     </div>

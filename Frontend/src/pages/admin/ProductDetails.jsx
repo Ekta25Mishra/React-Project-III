@@ -5,8 +5,28 @@ import {
   asyncdeleteproduct,
   asyncupdateproduct,
 } from "../../store/actions/productActions";
+import { asyncupdateuser } from "../../store/actions/userActions";
 
 const ProductDetails = () => {
+
+   const AddtoCartHandler = (product) => {
+      
+      const copyuser = { ...users, cart: [...users.cart] };
+      const x = copyuser.cart.findIndex((c) => c?.product?.id ==product.id);
+  
+      if(x == -1){
+        copyuser.cart.push({ product, quantity : 1});
+      }
+      else{
+        copyuser.cart[x]={
+          product,
+          quantity: copyuser.cart[x].quantity + 1
+        }
+      }
+  
+      dispatch(asyncupdateuser(copyuser.id, copyuser))
+    };
+
   const { id } = useParams();
   const products = useSelector(
   (state) => state.productReducer?.products
@@ -16,7 +36,6 @@ const users = useSelector(
   (state) => state.userReducer?.users
 );
   const product = products?.find((product) => product.id == id);
-  console.log( users);
 
   const { register, reset, handleSubmit } = useForm({
     defaultValues: {
@@ -63,6 +82,7 @@ const users = useSelector(
             </p>
 
             <button
+            onClick={() => AddtoCartHandler(product)}
               className="mt-4 px-5 py-2 rounded-full border border-gray-300 
                          text-sm hover:bg-gray-900 hover:text-white transition"
             >

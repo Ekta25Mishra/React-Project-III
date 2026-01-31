@@ -1,29 +1,52 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { asyncupdateuser } from "../store/actions/userActions";
+import { Suspense, useEffect, useState } from "react";
+import axios from "../api/axiosconfig";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 const Products = () => {
   const dispatch = useDispatch();
-  const users= useSelector((state) => state.userReducer.users);
-  const products= useSelector((state) => state.productReducer.products);
+  const users = useSelector((state) => state.userReducer.users);
+  // const products= useSelector((state) => state.productReducer.products);
+  const [products, setproducts] = useState([]);
+  const [hasMore, sethasMore] = useState(true);
+
+  const fetchproducts = async () => {
+    try {
+      const { data } = await axios.get(
+        `/products?_limit=8&_start=${products.length}`,
+      );
+      if (data.length == 0) {
+        sethasMore(false);
+      } else {
+        sethasMore(true);
+      }
+      setproducts([...products, ...data]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchproducts();
+  }, []);
 
   const AddtoCartHandler = (product) => {
-    
     const copyuser = { ...users, cart: [...users.cart] };
-    const x = copyuser.cart.findIndex((c) => c?.product?.id ==product.id);
+    const x = copyuser.cart.findIndex((c) => c?.product?.id == product.id);
 
-    if(x == -1){
-      copyuser.cart.push({ product, quantity : 1});
-    }
-    else{
-      copyuser.cart[x]={
+    if (x == -1) {
+      copyuser.cart.push({ product, quantity: 1 });
+    } else {
+      copyuser.cart[x] = {
         product,
-        quantity: copyuser.cart[x].quantity + 1
-      }
+        quantity: copyuser.cart[x].quantity + 1,
+      };
     }
     console.log(copyuser);
 
-    dispatch(asyncupdateuser(copyuser.id, copyuser))
+    dispatch(asyncupdateuser(copyuser.id, copyuser));
   };
 
   const renderproduct = products.map((product) => {
@@ -72,18 +95,27 @@ const Products = () => {
     );
   });
 
-  return products.length > 0 ? (
+  return  (
     <div
       className="min-h-screen w-full bg-gray-100 
                  flex justify-center items-start py-10"
     >
-      <div className="max-w-6xl flex flex-wrap gap-6 justify-center">
-        {renderproduct}
-      </div>
+      <InfiniteScroll
+        className="max-w-6xl flex flex-wrap gap-6 justify-center"
+        dataLength={products.length}
+        next={fetchproducts}
+        hasMore={hasMore}
+        loader={<h4>Loading...</h4>}
+        endMessage={
+          <p style={{ textAlign: "center" }}>
+            <b>Yay! You have seen it all.</b>
+          </p>
+        }
+      >
+        <Suspense fallback={<h1 className="text-center text-5xl text-yellow-500">LOADING...</h1>}>{renderproduct}</Suspense>
+      </InfiniteScroll>
     </div>
-  ) : (
-    "Loading..."
-  );
+  ) 
 };
 
 export default Products;
